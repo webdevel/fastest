@@ -3,6 +3,7 @@ language: php
 php:
   - 7.3
   - 7.4
+  - 8.0
 
 env:
   matrix:
@@ -20,7 +21,7 @@ before_script:
   - phpenv config-rm xdebug.ini
   - composer selfupdate
   - composer require "phpunit/phpunit:$PHPUNIT_VERSION" --no-update;
-  - composer update $PREFER_LOWEST
+  - composer update $PREFER_LOWEST --prefer-dist --no-interaction --ignore-platform-req=php
 
 script:
   - bin/phpstan.phar analyze src tests
